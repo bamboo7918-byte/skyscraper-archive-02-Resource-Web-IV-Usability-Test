@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Building — SKYSCRAPERS</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ftc8rtb.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .bld-header {
+      padding: 80px 3rem 2.5rem;
+      border-bottom: 1px solid #222;
+    }
+    .bld-back {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+    }
+    .bld-back:hover { color: #fff; }
+
+    .bld-title {
+      font-family: 'futura-pt', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2.5rem, 6vw, 7rem);
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+    }
+
+    .bld-location {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #0078BF;
+      margin-top: 0.9rem;
+      font-weight: 700;
+    }
+
+    /* Sections */
+    .bld-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #222;
+    }
+    .bld-section.reversed { direction: rtl; }
+    .bld-section.reversed > * { direction: ltr; }
+
+    /* Image box — height adapts to image content */
+    .bld-img {
+      background: #080808;
+      border-right: 1px solid #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      overflow: hidden;
+    }
+    .bld-section.reversed .bld-img {
+      border-right: none;
+      border-left: 1px solid #222;
+    }
+
+    /* Image fills width, height auto — no cropping */
+    .bld-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: unset; /* never crop */
+    }
+
+    .bld-img-label {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #222;
+    }
+
+    .bld-text {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bld-text-tag {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #0078BF;
+      margin-bottom: 0.9rem;
+      font-weight: 700;
+    }
+    .bld-text-heading {
+      font-family: 'futura-pt', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.4rem;
+      line-height: 1;
+    }
+    .bld-text-body {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 1.05rem;
+      color: #fff;
+      line-height: 1.85;
+      font-weight: 300;
+    }
+
+    /* Data table */
+    .bld-data {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 1.8rem;
+      border-top: 1px solid #1a1a1a;
+    }
+    .bld-data-label {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0.7rem 1rem 0.7rem 0;
+      border-bottom: 1px solid #1a1a1a;
+      font-weight: 700;
+    }
+    .bld-data-value {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.92rem;
+      color: #fff;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .bld-data-value.blue { color: #0078BF; font-weight: 700; font-size: 1.1rem; }
+
+    @media (max-width: 768px) {
+      .bld-section {
+        grid-template-columns: 1fr;
+        direction: ltr;
+      }
+      .bld-section.reversed { direction: ltr; }
+      .bld-img {
+        min-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid #222;
+      }
+      .bld-section.reversed .bld-img {
+        border-left: none;
+        border-bottom: 1px solid #222;
+      }
+      .bld-header { padding: 80px 1.5rem 2rem; }
+      .bld-text { padding: 2rem 1.5rem; }
+      .bld-data { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav-logo">SKYSCRAPERS</a>
+    <ul class="nav-links">
+      <li><a href="archive.html" class="active">Archive</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
+      <li><a href="height.html">Height comparison</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+    <header class="bld-header">
+      <a class="bld-back" id="back-link" href="archive.html">← Back to Archive</a>
+      <h1 class="bld-title" id="bld-name">—</h1>
+      <p class="bld-location" id="bld-location">—</p>
+    </header>
+
+    <!-- Section 1: Overview — Image left, Data right -->
+    <section class="bld-section">
+      <div class="bld-img" id="img-1"><span class="bld-img-label">Image</span></div>
+      <div class="bld-text">
+        <p class="bld-text-tag">Building Overview</p>
+        <h2 class="bld-text-heading">Basic Data</h2>
+        <div class="bld-data">
+          <span class="bld-data-label">Height</span>
+          <span class="bld-data-value blue" id="d-height">—</span>
+          <span class="bld-data-label">Floors</span>
+          <span class="bld-data-value" id="d-floors">—</span>
+          <span class="bld-data-label">Completed</span>
+          <span class="bld-data-value" id="d-year">—</span>
+          <span class="bld-data-label">Construction</span>
+          <span class="bld-data-value" id="d-period">—</span>
+          <span class="bld-data-label">Architect</span>
+          <span class="bld-data-value" id="d-architect">—</span>
+          <span class="bld-data-label">Firm</span>
+          <span class="bld-data-value" id="d-firm">—</span>
+          <span class="bld-data-label">Location</span>
+          <span class="bld-data-value" id="d-location">—</span>
+          <span class="bld-data-label">Address</span>
+          <span class="bld-data-value" id="d-address">—</span>
+          <span class="bld-data-label">Purpose</span>
+          <span class="bld-data-value" id="d-use">—</span>
+          <span class="bld-data-label">Est. Cost</span>
+          <span class="bld-data-value" id="d-cost">—</span>
+          <span class="bld-data-label">Materials</span>
+          <span class="bld-data-value" id="d-materials">—</span>
+        </div>
+        <p class="bld-text-body" id="d-overview">—</p>
+      </div>
+    </section>
+
+    <!-- Section 2: Cultural Context — Text left, Image right -->
+    <section class="bld-section reversed">
+      <div class="bld-img" id="img-2"><span class="bld-img-label">Image</span></div>
+      <div class="bld-text">
+        <p class="bld-text-tag">Cultural Context</p>
+        <h2 class="bld-text-heading">Culture &amp; Identity</h2>
+        <p class="bld-text-body" id="d-cultural">—</p>
+      </div>
+    </section>
+
+    <!-- Section 3: Construction — Image left, Text right -->
+    <section class="bld-section">
+      <div class="bld-img" id="img-3"><span class="bld-img-label">Image</span></div>
+      <div class="bld-text">
+        <p class="bld-text-tag">Construction</p>
+        <h2 class="bld-text-heading">How Was It Built?</h2>
+        <p class="bld-text-body" id="d-construction">—</p>
+      </div>
+    </section>
+
+    <!-- Section 4: Impact — Text left, Image right -->
+    <section class="bld-section reversed">
+      <div class="bld-img" id="img-4"><span class="bld-img-label">Image</span></div>
+      <div class="bld-text">
+        <p class="bld-text-tag">Impact</p>
+        <h2 class="bld-text-heading">After Effects</h2>
+        <p class="bld-text-body" id="d-effects">—</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="buildings.js"></script>
+  <script src="script.js"></script>
+  <script>
+  (function() {
+    const id = new URLSearchParams(location.search).get('id');
+    if (!id) return;
+    const b = getBuildingById(id);
+    if (!b) return;
+
+    document.title = b.name + ' — SKYSCRAPERS';
+
+    const set = (elId, val) => {
+      const el = document.getElementById(elId);
+      if (el && val) el.textContent = val;
+    };
+
+    const imperialHeight = (typeof b.heightFt === 'number' ? b.heightFt : Math.round(b.height * 3.281)).toLocaleString('en-US');
+
+    set('bld-name',     b.name);
+    set('bld-location', b.city + ', ' + b.country + ' · ' + b.year);
+    set('d-height',     b.height + 'm / ' + imperialHeight + 'ft');
+    set('d-floors',     (b.floors && b.floors > 0) ? b.floors + ' floors' : '—');
+    set('d-year',       b.year);
+    set('d-period',     b.period || '—');
+    set('d-architect',  b.architect);
+    set('d-firm',       b.firm || b.architect);
+    set('d-location',   b.city + ', ' + b.country);
+    set('d-address',    b.address || '—');
+    set('d-use',        b.use);
+    set('d-cost',       b.cost || '—');
+    set('d-materials',  b.materials || '—');
+    set('d-overview',      b.overview);
+    set('d-cultural',      b.cultural);
+    set('d-construction',  b.construction);
+    set('d-effects',       b.effects);
+
+    const backLink = document.getElementById('back-link');
+    if (backLink) backLink.href = 'continent.html?region=' + b.region;
+
+    /* ── Inject images ─────────────────────────────────────────
+       If building has b.images[], use them per section.
+       Otherwise fall back to BUILDING_IMAGES[b.id] for all.
+    ─────────────────────────────────────────────────────────── */
+    function injectImg(boxId, src) {
+      if (!src) return;
+      const box = document.getElementById(boxId);
+      if (!box) return;
+      const img = document.createElement('img');
+      const folderPath = b.folder || b.name.toUpperCase();
+      img.src = encodeURIComponent(folderPath) + '/' + encodeURIComponent(src);
+      img.alt = b.name;
+      /* no object-fit crop — image shows in full */
+      img.style.cssText = 'width:100%;height:auto;display:block;';
+      img.onerror = function() { this.remove(); };
+      box.innerHTML = '';
+      box.appendChild(img);
+    }
+
+    if (b.images && b.images.length) {
+      /* Featured building: one unique image per section */
+      injectImg('img-1', b.images[0]);
+      injectImg('img-2', b.images[1] || b.images[0]);
+      injectImg('img-3', b.images[2] || b.images[0]);
+      injectImg('img-4', b.images[3] || b.images[0]);
+    } else {
+      /* Regular building: same image for all sections */
+      const fallback = (typeof BUILDING_IMAGES !== 'undefined') ? BUILDING_IMAGES[b.id] : null;
+      if (fallback) {
+        ['img-1','img-2','img-3','img-4'].forEach(function(elId) {
+          injectImg(elId, fallback);
+        });
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

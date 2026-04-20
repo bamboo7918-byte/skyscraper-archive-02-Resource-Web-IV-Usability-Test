@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Archive — SKYSCRAPERS</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ftc8rtb.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body, html { height: 100%; }
+
+    .archive-main {
+      padding-top: 56px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      padding-left: 0;
+      padding-right: 0;
+      overflow: hidden;
+    }
+
+    .archive-intro {
+      text-align: center;
+      padding: 2rem 2rem 3rem;
+    }
+
+    .archive-intro-tag {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #0078BF;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .archive-intro-heading {
+      font-family: 'futura-pt', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .archive-intro-body {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #fff;
+      max-width: 720px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .archive-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archive-list li {
+      border-top: 1px solid #1a1a1a;
+    }
+    .archive-list li:last-child {
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .archive-list a {
+      display: block;
+      font-family: 'futura-pt', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5.5vw, 5.5rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #fff;
+      padding: 1.1rem 0;
+      line-height: 1.1;
+      white-space: nowrap;
+      transition: color 0.15s;
+      text-align: center;
+    }
+    .archive-list a:hover { color: #0078BF; }
+
+    @media (max-width: 768px) {
+      .archive-intro { padding: 1.5rem 1.2rem 2rem; }
+      .archive-intro-body { font-size: 0.95rem; }
+      .archive-list a { padding: 0.9rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav-logo">SKYSCRAPERS</a>
+    <ul class="nav-links">
+      <li><a href="archive.html" class="active">Archive</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
+      <li><a href="height.html">Height comparison</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="archive-main">
+    <div class="archive-intro">
+      <div class="archive-intro-tag">Archive by Region</div>
+      <h1 class="archive-intro-heading">Browse Skyscrapers Across Five Regions</h1>
+      <p class="archive-intro-body">Select a region below to open an interactive map. Every building in our archive is plotted on the map where it stands. Hover a pin to preview the building, then click to see its full history, construction details, and cultural context.</p>
+    </div>
+
+    <ul class="archive-list">
+      <li><a href="continent.html?region=east-asia">East Asia</a></li>
+      <li><a href="continent.html?region=north-america">North America</a></li>
+      <li><a href="continent.html?region=west-europe">West Europe</a></li>
+      <li><a href="continent.html?region=middle-east">Middle East</a></li>
+      <li><a href="continent.html?region=oceania">Oceania</a></li>
+    </ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

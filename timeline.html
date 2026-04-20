@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timeline — SKYSCRAPERS</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ftc8rtb.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { overflow-x: hidden; }
+
+    .tl-page {
+      padding-top: 56px;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #000000 0%, #02060b 100%);
+    }
+
+    .tl-header {
+      padding: 3rem 3rem 0;
+      color: #fff;
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .tl-list {
+      padding: 2rem 3rem;
+      list-style: none;
+    }
+
+    .tl-item {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 2rem;
+    }
+
+    .tl-item:last-child {
+      border-bottom: none;
+    }
+
+    .tl-item a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+    }
+
+    .tl-item a:hover {
+      color: #0078BF;
+      padding-left: 1rem;
+    }
+
+    .tl-year {
+      font-family: 'futura-pt', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #0078BF;
+      margin-bottom: 0.5rem;
+    }
+
+    .tl-name {
+      font-family: 'futura-pt', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .tl-details {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.95rem;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 640px) {
+      .tl-page {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .tl-header {
+        padding: 1.5rem;
+        font-size: 0.85rem;
+      }
+
+      .tl-list {
+        padding: 1.5rem;
+      }
+
+      .tl-name {
+        font-size: 1.4rem;
+      }
+
+      .tl-year {
+        font-size: 1.2rem;
+      }
+
+      .tl-details {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav-logo">SKYSCRAPERS</a>
+    <ul class="nav-links">
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="timeline.html" class="active">Timeline</a></li>
+      <li><a href="height.html">Height comparison</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="tl-page">
+    <div class="tl-header">Buildings arranged chronologically — from first built to most recent</div>
+    <ul class="tl-list" id="tl-list"></ul>
+  </div>
+
+  <script src="buildings.js"></script>
+  <script src="script.js"></script>
+  <script>
+  (function() {
+    const container = document.getElementById('tl-list');
+    const sorted = getAllByYear();
+
+    sorted.forEach(function(b) {
+      const li = document.createElement('li');
+      li.className = 'tl-item';
+      li.innerHTML = `
+        <a href="building.html?id=${b.id}">
+          <div class="tl-year">${b.year}</div>
+          <div class="tl-name">${b.name}</div>
+          <div class="tl-details">${b.height}m · ${b.city}</div>
+        </a>
+      `;
+      container.appendChild(li);
+    });
+  })();
+  </script>
+</body>
+</html>

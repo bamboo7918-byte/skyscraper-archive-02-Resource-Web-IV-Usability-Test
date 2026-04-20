@@ -1,0 +1,18 @@
+<svg width="200" height="760" viewBox="0 0 200 760" xmlns="http://www.w3.org/2000/svg">
+  
+  
+  <g fill="#0078BF">
+    <path d="M65 750 
+             L65 250 
+             Q65 150 100 120 
+             L135 150 
+             Q135 250 135 750 
+             Z" />
+    
+    <path d="M85 750 
+             Q80 400 100 120 
+             L115 135 
+             Q95 400 95 750 
+             Z" fill="#005A8F" opacity="0.8"/> <rect x="60" y="750" width="80" height="10"/>
+  </g>
+</svg>

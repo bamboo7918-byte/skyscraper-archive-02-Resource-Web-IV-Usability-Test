@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Region — SKYSCRAPERS</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ftc8rtb.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body, html { height: 100%; overflow: hidden; }
+
+    .map-wrap {
+      position: fixed;
+      inset: 0;
+      padding-top: 56px;
+    }
+
+    #map-container {
+      position: absolute;
+      inset: 0;
+      top: 56px;
+    }
+
+    #map-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #region-label {
+      position: fixed;
+      bottom: 28px;
+      left: 36px;
+      font-family: "futura-pt", sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.2rem, 3vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #fff;
+      opacity: 0.08;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hint-text {
+      position: fixed;
+      top: 80px;
+      left: 36px;
+      font-family: "futura-pt", sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      opacity: 0.7;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .hint-text.fade { opacity: 0; }
+
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 32px;
+      font-family: "futura-pt", sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #444;
+      text-decoration: none;
+      border-bottom: 1px solid #2a2a2a;
+      z-index: 100;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .back-btn:hover { color: #fff; border-color: #fff; }
+
+    /* Building card */
+    #bld-card {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      pointer-events: none;
+      width: 260px;
+      background: #000;
+      border: 1px solid #0078BF;
+    }
+    #bld-card.on { display: block; }
+    #bld-card img {
+      width: 100%; height: 150px;
+      object-fit: cover; display: block;
+      background: #0a0a0a;
+    }
+    #bld-card .info { padding: 14px 16px; }
+    #bld-card .name {
+      font-family: "futura-pt", sans-serif;
+      font-weight: 700; font-size: 1rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: #fff; line-height: 1.15; margin-bottom: 5px;
+    }
+    #bld-card .loc {
+      font-family: "futura-pt", sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #0078BF; margin-bottom: 12px;
+    }
+    #bld-card .stats { display: flex; gap: 18px; }
+    #bld-card .stat-val {
+      font-family: "futura-pt", sans-serif;
+      font-weight: 700; font-size: 1.1rem; color: #fff; line-height: 1;
+    }
+    #bld-card .stat-lbl {
+      font-family: "futura-pt", sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #fff; margin-top: 3px;
+    }
+    #bld-card .hint {
+      font-family: "futura-pt", sans-serif;
+      font-size: 0.6rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #fff;
+      border-top: 1px solid #111; padding: 8px 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav-logo">SKYSCRAPERS</a>
+    <ul class="nav-links">
+      <li><a href="archive.html" class="active">Archive</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
+      <li><a href="height.html">Height comparison</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="map-wrap">
+    <div id="map-container"></div>
+  </div>
+
+  <div id="region-label"></div>
+  <div class="hint-text">Hover or click pins to explore buildings</div>
+  <a href="archive.html" class="back-btn">← Back</a>
+
+  <div id="bld-card">
+    <img id="card-img" src="" alt="">
+    <div class="info">
+      <div class="name" id="card-name"></div>
+      <div class="loc"  id="card-loc"></div>
+      <div class="stats">
+        <div><div class="stat-val" id="card-h"></div><div class="stat-lbl">Height</div></div>
+        <div><div class="stat-val" id="card-yr"></div><div class="stat-lbl">Year</div></div>
+        <div><div class="stat-val" id="card-fl"></div><div class="stat-lbl">Floors</div></div>
+      </div>
+    </div>
+    <div class="hint">Click to view →</div>
+  </div>
+
+  <script src="buildings.js"></script>
+  <script src="script.js"></script>
+  <script src="continent.js"></script>
+</body>
+</html>

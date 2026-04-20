@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Height Comparison — SKYSCRAPERS</title>
+  <link rel="stylesheet" href="https://use.typekit.net/ftc8rtb.css"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { overflow: hidden; }
+
+    .height-page {
+      padding-top: 56px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .height-header {
+      padding: 1.2rem 3rem 0.8rem;
+      color: #fff;
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .height-chart-area {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 2rem 3rem 0 3rem;
+      gap: 14px;
+      border-bottom: 2px solid #333;
+      scrollbar-width: thin;
+      scrollbar-color: #0078BF #000;
+      background: linear-gradient(180deg, #01060b 0%, #000000 100%);
+    }
+    .height-chart-area::-webkit-scrollbar { height: 3px; }
+    .height-chart-area::-webkit-scrollbar-thumb { background: #0078BF; }
+
+    .h-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      flex-shrink: 0;
+      width: 110px;
+      text-decoration: none;
+      color: inherit;
+      height: 100%;
+      padding-bottom: 0.6rem;
+    }
+
+    .h-svg-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .h-item svg,
+    .h-item img {
+      display: block;
+      filter: drop-shadow(0 0 12px rgba(0, 120, 191, 0.15));
+    }
+
+    .h-label {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      text-align: center;
+      margin-top: 0.6rem;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .h-meters {
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.82rem;
+      color: #0078BF;
+      text-align: center;
+      margin-top: 0.25rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .height-footer-bar {
+      padding: 0.8rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'futura-pt', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #000;
+    }
+
+    @media (max-width: 640px) {
+      .height-chart-area {
+        padding: 1.5rem 1.1rem 0 1.1rem;
+        gap: 10px;
+      }
+      .height-header { padding: 1rem 1.1rem 0.5rem; font-size: 0.82rem; }
+      .height-footer-bar {
+        padding: 0.6rem 1.1rem;
+        gap: 0.8rem;
+        flex-direction: column;
+        font-size: 0.72rem;
+      }
+      .h-item { width: 82px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" role="navigation">
+    <a href="index.html" class="nav-logo">SKYSCRAPERS</a>
+    <ul class="nav-links">
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
+      <li><a href="height.html" class="active">Height comparison</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="height-page">
+    <div class="height-header">All buildings sorted by height — see every skyscraper drawn to scale, aligned to a shared ground line</div>
+    <div class="height-chart-area" id="chart"></div>
+    <div class="height-footer-bar">
+      <span>Tallest → Shortest</span>
+      <span id="building-count"></span>
+      <span>Click a building to view details</span>
+    </div>
+  </div>
+
+  <script src="buildings.js"></script>
+  <script src="script.js"></script>
+  <script>
+  (function() {
+    const chart = document.getElementById('chart');
+    const sorted = getAllByHeight();
+    const maxH = sorted[0].height;
+
+    document.getElementById('building-count').textContent = sorted.length + ' buildings shown';
+
+    const chartH = Math.max(360, window.innerHeight - 56 - 58 - 56);
+    const maxBuildingPx = chartH - 90;
+    const minBuildingPx = 80;
+
+    sorted.forEach(function(b) {
+      const ratio = b.height / maxH;
+      const pxH = Math.max(minBuildingPx, Math.round(ratio * maxBuildingPx));
+      const pxW = Math.max(26, Math.round(pxH / 4));
+
+      const a = document.createElement('a');
+      a.className = 'h-item';
+      a.href = 'building.html?id=' + b.id;
+      const svgFile = (typeof BUILDING_SVG_FILES !== 'undefined' && BUILDING_SVG_FILES[b.id]) || '';
+      const style = b.id === 'burj-khalifa' ? 'object-fit:fill;transform:translateY(60px);' : 'object-fit:fill;';
+      a.innerHTML =
+        '<div class="h-svg-wrap">' +
+          '<img src="' + encodeURI(svgFile) + '" width="' + pxW + '" height="' + pxH + '" style="' + style + '" alt="' + b.name + '">' +
+        '</div>' +
+        '<div class="h-label">' + b.name + '</div>' +
+        '<div class="h-meters">' + b.height + 'm</div>';
+      chart.appendChild(a);
+    });
+  })();
+  </script>
+</body>
+</html>

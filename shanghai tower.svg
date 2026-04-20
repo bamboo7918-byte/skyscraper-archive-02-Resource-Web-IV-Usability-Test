@@ -1,0 +1,17 @@
+<svg width="200" height="760" viewBox="0 0 200 760" xmlns="http://www.w3.org/2000/svg">
+  
+  
+  <g fill="#0078BF">
+    <path d="M60 750 
+             Q55 600 65 450 
+             T75 150 
+             L125 150 
+             Q145 300 135 450 
+             T140 750 
+             Z" />
+    
+    <path d="M75 150 L125 150 L120 135 L80 135 Z" />
+    
+    <rect x="55" y="750" width="90" height="10"/>
+  </g>
+</svg>

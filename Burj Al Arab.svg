@@ -1,0 +1,20 @@
+<svg width="200" height="760" viewBox="0 0 200 760" xmlns="http://www.w3.org/2000/svg">
+  
+  
+  <g fill="#0078BF">
+    <rect x="75" y="150" width="8" height="600"/>
+    
+    <path d="M83 200 
+             Q160 450 83 700 
+             L83 200 Z" />
+    
+    <rect x="83" y="350" width="40" height="4"/>
+    <rect x="83" y="500" width="50" height="4"/>
+    
+    <rect x="55" y="240" width="25" height="4"/>
+    
+    <path d="M75 150 L79 80 L83 150 Z" />
+    
+    <path d="M50 750 L150 750 Q150 770 100 770 T50 750 Z" />
+  </g>
+</svg>
